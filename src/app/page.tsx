@@ -1,4 +1,4 @@
-'use client';
+use client';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -24,6 +24,48 @@ const STEPS = [
 const NAV: [string, string][] = [['#about','О нас'],['#how','Как это работает'],['#reviews','Отзывы'],['#contacts','Контакты']];
 const PG = 'linear-gradient(135deg,#7c3aed,#a855f7)';
 const PS = '0 4px 16px rgba(168,85,247,0.35)';
+
+
+function NavAuthButtons() {
+  const [user, setUser] = useState<{full_name?:string;avatar_emoji?:string}|null>(null);
+  useEffect(() => {
+    const token = localStorage.getItem('user_token');
+    const data = localStorage.getItem('user_data');
+    if (token && data) { try { setUser(JSON.parse(data)); } catch {} }
+  }, []);
+  if (user) return (
+    <Link href="/profile" className="flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-xl transition-colors" style={{background:'rgba(168,85,247,0.1)',border:'1px solid rgba(168,85,247,0.2)',color:'#c084fc'}}>
+      <span>{user.avatar_emoji||'🎯'}</span>
+      <span>{user.full_name||'Профиль'}</span>
+    </Link>
+  );
+  return (
+    <div className="flex items-center gap-2">
+      <Link href="/login" className="text-sm font-medium transition-colors" style={{color:'#94a3b8'}} onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.color='#fff';}} onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.color='#94a3b8';}}>Войти</Link>
+      <Link href="/register" className="text-sm font-bold px-3 py-1.5 rounded-xl transition-all" style={{background:'rgba(168,85,247,0.15)',border:'1px solid rgba(168,85,247,0.3)',color:'#c084fc'}}>Регистрация</Link>
+    </div>
+  );
+}
+
+function MobileAuthLinks({ onClose }: { onClose: () => void }) {
+  const [user, setUser] = useState<{full_name?:string;avatar_emoji?:string}|null>(null);
+  useEffect(() => {
+    const token = localStorage.getItem('user_token');
+    const data = localStorage.getItem('user_data');
+    if (token && data) { try { setUser(JSON.parse(data)); } catch {} }
+  }, []);
+  if (user) return (
+    <Link href="/profile" onClick={onClose} className="flex items-center gap-2 py-3 px-3 rounded-xl font-semibold" style={{background:'rgba(168,85,247,0.1)',border:'1px solid rgba(168,85,247,0.2)',color:'#c084fc'}}>
+      <span>{user.avatar_emoji||'🎯'}</span><span>{user.full_name||'Мой профиль'}</span>
+    </Link>
+  );
+  return (
+    <div className="grid grid-cols-2 gap-2">
+      <Link href="/login" onClick={onClose} className="py-3 text-center rounded-xl text-sm font-bold" style={{background:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.1)',color:'#94a3b8'}}>Войти</Link>
+      <Link href="/register" onClick={onClose} className="py-3 text-center rounded-xl text-sm font-bold" style={{background:'rgba(168,85,247,0.15)',border:'1px solid rgba(168,85,247,0.3)',color:'#c084fc'}}>🎁 Регистрация</Link>
+    </div>
+  );
+}
 
 function BallsCalc() {
   const [players, setPlayers] = useState(4);
@@ -96,7 +138,7 @@ export default function HomePage() {
                 onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.color='#fff';}}
                 onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.color='#94a3b8';}}>{l}</a>
             ))}
-            <Link href="/profile" className="text-sm font-medium" style={{color:'#94a3b8',transition:'color 0.15s'}} onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.color='#fff';}} onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.color='#94a3b8';}}>👤 Профиль</Link>
+            <NavAuthButtons />
             <Link href="/booking" className="btn-primary py-2.5 px-5 text-sm">Забронировать</Link>
           </div>
           <button className="md:hidden p-2" onClick={()=>setMenu(!menu)} style={{WebkitTapHighlightColor:'transparent'}}>
@@ -108,6 +150,7 @@ export default function HomePage() {
         {menu&&(
           <div className="md:hidden px-4 pb-5 pt-2 flex flex-col gap-1" style={{borderTop:'1px solid rgba(255,255,255,0.06)'}}>
             {NAV.map(([h,l])=><a key={h} href={h} className="py-3 px-3 text-base font-medium rounded-xl" style={{color:'#94a3b8'}} onClick={()=>setMenu(false)}>{l}</a>)}
+            <MobileAuthLinks onClose={()=>setMenu(false)} />
             <Link href="/booking" className="btn-primary py-4 text-center mt-2" onClick={()=>setMenu(false)}>🎯 Забронировать игру</Link>
           </div>
         )}
