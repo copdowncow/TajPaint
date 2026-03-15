@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#07050f"/>
+    </radialGradient>
+    <radialGradient id="smoke" cx="50%" cy="60%" r="40%">
+      <stop offset="0%" stop-color="#2d1b4e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#07050f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#smoke)"/>
+  
+  <!-- Ground -->
+  <ellipse cx="600" cy="750" rx="500" ry="80" fill="#0f0a1a" opacity="0.8"/>
+  
+  <!-- Paintball player silhouette - military stance shooting -->
+  <g transform="translate(500, 150)">
+    <!-- Body/torso in shooting stance -->
+    <ellipse cx="100" cy="200" rx="45" ry="70" fill="#1a0a2e" opacity="0.9"/>
+    <!-- Head with helmet/mask -->
+    <circle cx="100" cy="105" r="38" fill="#120820"/>
+    <ellipse cx="100" cy="118" rx="42" ry="22" fill="#1e0f35" opacity="0.9"/>
+    <!-- Mask visor -->
+    <ellipse cx="100" cy="115" rx="28" ry="14" fill="#7c3aed" opacity="0.3"/>
+    <!-- Arms extended holding marker -->
+    <path d="M 65 185 Q 20 175 -30 170" stroke="#1a0a2e" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <path d="M 135 185 Q 175 170 210 165" stroke="#1a0a2e" stroke-width="20" fill="none" stroke-linecap="round"/>
+    <!-- Paintball marker/gun -->
+    <rect x="-60" y="158" width="120" height="18" rx="6" fill="#0f0820"/>
+    <rect x="-80" y="162" width="30" height="10" rx="3" fill="#1a1030"/>
+    <rect x="40" y="155" width="50" height="8" rx="2" fill="#0a0618"/>
+    <!-- Barrel -->
+    <rect x="60" y="159" width="80" height="8" rx="4" fill="#0f0820"/>
+    <!-- Hopper -->
+    <ellipse cx="10" cy="148" rx="18" ry="22" fill="#1e1040" opacity="0.9"/>
+    <!-- Legs in stance -->
+    <path d="M 75 265 L 55 380 L 70 385" stroke="#120820" stroke-width="28" fill="none" stroke-linecap="round"/>
+    <path d="M 125 265 L 145 370 L 160 365" stroke="#120820" stroke-width="28" fill="none" stroke-linecap="round"/>
+    <!-- Boots -->
+    <ellipse cx="67" cy="388" rx="25" ry="10" fill="#0a0614"/>
+    <ellipse cx="155" cy="368" rx="25" ry="10" fill="#0a0614"/>
+  </g>
+  
+  <!-- Paint splats shooting out from marker -->
+  <g opacity="0.85">
+    <!-- Purple paint splats -->
+    <circle cx="820" cy="290" r="12" fill="#a855f7" opacity="0.9"/>
+    <circle cx="850" cy="285" r="8" fill="#9333ea"/>
+    <circle cx="870" cy="295" r="6" fill="#7c3aed"/>
+    <circle cx="895" cy="280" r="10" fill="#c084fc" opacity="0.8"/>
+    <circle cx="920" cy="288" r="5" fill="#a855f7"/>
+    <!-- Splat trails -->
+    <ellipse cx="835" cy="292" rx="15" ry="5" fill="#a855f7" opacity="0.5" transform="rotate(-5,835,292)"/>
+    <ellipse cx="880" cy="287" rx="12" ry="4" fill="#9333ea" opacity="0.6" transform="rotate(3,880,287)"/>
+    <!-- Paint drips hitting wall -->
+    <circle cx="960" cy="260" r="18" fill="#a855f7" opacity="0.7"/>
+    <path d="M 960 278 Q 958 300 955 320" stroke="#9333ea" stroke-width="4" fill="none" opacity="0.6"/>
+    <circle cx="990" cy="240" r="14" fill="#c084fc" opacity="0.6"/>
+    <path d="M 990 254 Q 988 270 985 290" stroke="#a855f7" stroke-width="3" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- Atmospheric particles -->
+  <g opacity="0.3">
+    <circle cx="200" cy="150" r="2" fill="#a855f7"/>
+    <circle cx="300" cy="300" r="1.5" fill="#c084fc"/>
+    <circle cx="900" cy="400" r="2" fill="#7c3aed"/>
+    <circle cx="1000" cy="200" r="1.5" fill="#a855f7"/>
+    <circle cx="150" cy="500" r="2" fill="#9333ea"/>
+    <circle cx="1050" cy="500" r="1.5" fill="#c084fc"/>
+  </g>
+</svg>
