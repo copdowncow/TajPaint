@@ -1,6 +1,6 @@
-'use client'; 
+'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const REVIEWS = [
   { name: 'Алишер Р.', text: 'Отличное место! Отмечали день рождения — все в восторге. Персонал профессиональный.', stars: 5 },
